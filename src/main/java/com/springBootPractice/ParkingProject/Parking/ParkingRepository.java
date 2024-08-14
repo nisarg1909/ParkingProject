@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface ParkingRepository extends CrudRepository<Parking,String> {
     List<Parking> findByCarsId(String car_id);
+    List<Parking> findByMembersId(String member_id);
 }

@@ -27,26 +27,37 @@ public class ParkingController {
         return parkingService.getParkingByCarId(car_id);
     }
 
-    @RequestMapping(method = RequestMethod.POST,value = "/parking/cars/{car_id}")
-    public String addParking(@RequestBody Parking parking, @PathVariable("car_id")String car_id){
-        Cars cars = new Cars(car_id,"","","");
+    @RequestMapping("/parking/members/{member_id}")
+    public List<Parking> getParkingByMemberId(@PathVariable("member_id")String member_id){
+        return parkingService.getParkingByMemberId(member_id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST,value = "/parking/cars/{car_id}/{member_id}")
+    public String addParking(@RequestBody Parking parking, @PathVariable("car_id")String car_id, @PathVariable("member_id")String member_id){
+        Cars cars = new Cars(car_id,"","");
         parking.setCars(cars);
+        Members members = new Members(member_id,"","","","");
+        parking.setMembers(members);
         parkingService.addParking(parking);
         return "Record Added Successfully";
     }
 
-    @RequestMapping(method = RequestMethod.PUT,value = "/parking/cars/{car_id}")
-    public String updateParking(@RequestBody Parking parking, @PathVariable("car_id")String car_id){
-        Cars cars = new Cars(car_id,"","","");
+    @RequestMapping(method = RequestMethod.PUT,value = "/parking/cars/{car_id}/{member_id}")
+    public String updateParking(@RequestBody Parking parking, @PathVariable("car_id")String car_id, @PathVariable("member_id")String member_id){
+        Cars cars = new Cars(car_id,"","");
         parking.setCars(cars);
+        Members members = new Members(member_id,"","","","");
+        parking.setMembers(members);
         parkingService.updateParking(parking);
         return "Record Updated Successfully";
     }
 
-    @RequestMapping(method = RequestMethod.DELETE,value = "/parking/cars/{car_id}")
-    public String deleteParking(@RequestBody Parking parking, @PathVariable("car_id")String car_id){
-        Cars cars = new Cars(car_id,"","","");
+    @RequestMapping(method = RequestMethod.DELETE,value = "/parking/cars/{car_id}/{member_id}")
+    public String deleteParking(@RequestBody Parking parking, @PathVariable("car_id")String car_id, @PathVariable("member_id")String member_id){
+        Cars cars = new Cars(car_id,"","");
         parking.setCars(cars);
+        Members members = new Members(member_id,"","","","");
+        parking.setMembers(members);
         parkingService.deleteParking(parking);
         return "Record Deleted Successfully";
     }

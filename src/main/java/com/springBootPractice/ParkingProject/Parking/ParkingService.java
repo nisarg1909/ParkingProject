@@ -26,6 +26,10 @@ public class ParkingService {
         return parkingRepository.findByCarsId(car_id);
     }
 
+    public List<Parking> getParkingByMemberId(String member_id){
+        return parkingRepository.findByMembersId(member_id);
+    }
+
     public void addParking(Parking parking){
         parkingRepository.save(parking);
     }

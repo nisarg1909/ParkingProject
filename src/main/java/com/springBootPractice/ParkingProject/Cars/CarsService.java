@@ -21,9 +21,6 @@ public class CarsService {
         return carsRepository.findById(id).get();
     }
 
-    public List<Cars> getCarsByMemberId(String member_id){
-        return carsRepository.findByMembersId(member_id);
-    }
 
     public void addCar(Cars cars){
         carsRepository.save(cars);

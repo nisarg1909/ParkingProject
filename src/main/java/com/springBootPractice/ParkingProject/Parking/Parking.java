@@ -1,9 +1,8 @@
 package com.springBootPractice.ParkingProject.Parking;
 
 import com.springBootPractice.ParkingProject.Cars.Cars;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import com.springBootPractice.ParkingProject.Members.Members;
+import jakarta.persistence.*;
 
 import java.sql.Date;
 
@@ -12,23 +11,26 @@ import java.sql.Date;
 public class Parking {
     @Id
     private String id;
-    private Date dates;
+    private String dates;
     private String time_in;
     private String time_out;
     private String parkingNo;
     @ManyToOne
     private Cars cars;
+    @ManyToOne
+    private Members members;
 
     public Parking() {
     }
 
-    public Parking(String id, Date dates, String time_in, String time_out, String parkingNo, String car_id) {
+    public Parking(String id, String dates, String time_in, String time_out, String parkingNo, String car_id, String member_id) {
         this.id = id;
         this.dates = dates;
         this.time_in = time_in;
         this.time_out = time_out;
         this.parkingNo = parkingNo;
-        this.cars = new Cars(car_id,"","","");
+        this.cars = new Cars(car_id,"","");
+        this.members = new Members(member_id,"","","","");
     }
 
     public String getId() {
@@ -39,11 +41,11 @@ public class Parking {
         this.id = id;
     }
 
-    public Date getDates() {
+    public String getDates() {
         return dates;
     }
 
-    public void setDates(Date dates) {
+    public void setDates(String dates) {
         this.dates = dates;
     }
 
@@ -77,5 +79,13 @@ public class Parking {
 
     public void setCars(Cars cars) {
         this.cars = cars;
+    }
+
+    public Members getMembers() {
+        return members;
+    }
+
+    public void setMembers(Members members) {
+        this.members = members;
     }
 }

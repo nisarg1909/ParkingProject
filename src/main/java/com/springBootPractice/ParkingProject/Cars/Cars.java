@@ -11,17 +11,15 @@ public class Cars {
     private String id;
     private String name;
     private String color;
-    @ManyToOne
-    private Members members;
+
 
     public Cars() {
     }
 
-    public Cars(String id, String name, String color, String member_id) {
+    public Cars(String id, String name, String color) {
         this.id = id;
         this.name = name;
         this.color = color;
-        this.members = new Members(member_id,"","","","");
     }
 
     public String getId() {
@@ -48,11 +46,5 @@ public class Cars {
         this.color = color;
     }
 
-    public Members getMembers() {
-        return members;
-    }
 
-    public void setMembers(Members members) {
-        this.members = members;
-    }
 }
